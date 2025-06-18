@@ -2,14 +2,14 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrusel con array objeto</title>
-    <link rel="shortcut icon" href="img/avion.avif" type="image/x-icon">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrusel con array objeto</title>
+  <link rel="shortcut icon" href="img/avion.avif" type="image/x-icon">
+
 </head>
 <style>
- html {
+  html {
     background: url(./img/cielo.jpg) no-repeat center center fixed;
     background-size: cover;
   }
@@ -67,54 +67,64 @@
     font-weight: bold;
     font-size: 18px;
     margin-top: 10px;
-  }    
+  }
 </style>
+
 <body>
-    <h1>CARRUSEL DE IMÁGENES</h1>
-    <p><img src="" alt="foto" id="imagen"> </p>
-    <div class="contenedor">
-        <button type="button" onclick="retroceder()">Retroceder</button>
-        <span id="nombreImagen">barcelona.jpg</span>
-        <button type="button" onclick="avanzar()">Avanzar</button>
-    </div>
-    <p id="descripcionImagen"></p>
-    
-    <script src="./js/imagenes_carrusel.js"></script>
+  <h1>CARRUSEL DE IMÁGENES</h1>
+  <p><img src="" alt="foto" id="imagen"> </p>
+  <div class="contenedor">
 
-    <script>
+    <span id="nombreImagen">barcelona.jpg</span>
 
-        const IMG = document.getElementById('imagen');
-        const NOMBRE = document.getElementById('nombreImagen');
-        const DESCRIPCION = document.getElementById('descripcionImagen');
+  </div>
+  <p id="descripcionImagen"></p>
 
-        IMG.style.border = '5px solid darkblue';
-        DESCRIPCION.style.color = 'black';
-        DESCRIPCION.style.textAlign = "center";
+  <script src="./js/imagenes_carrusel.js"></script>
 
-        let posicion = 0;
-        mostrarImagen();
+  <script>
+    const IMG = document.getElementById('imagen');
+    const NOMBRE = document.getElementById('nombreImagen');
+    const DESCRIPCION = document.getElementById('descripcionImagen');
 
+    IMG.style.border = '5px solid darkblue';
+    DESCRIPCION.style.color = 'black';
+    DESCRIPCION.style.textAlign = "center";
 
-        function avanzar() {
-            posicion = (posicion + 1) % imagenes.length;
-            mostrarImagen();
-        }
+    let posicion = 0;
+    mostrarImagen();
 
-        function retroceder() {
-            posicion = (posicion - 1 + imagenes.length) % imagenes.length;
-            mostrarImagen();
-        }
+    function avanzar() {
+      posicion = (posicion + 1) % imagenes.length;
+    }
 
+    function retroceder() {
+      posicion = (posicion - 1 + imagenes.length) % imagenes.length;
+      mostrarImagen();
+    }
 
-        function mostrarImagen() {
-            IMG.src = RUTA + imagenes[posicion].archivo;
-            IMG.alt = imagenes[posicion].nombre;
-            IMG.title = imagenes[posicion].tooltip;
+    function cambiarDiapositiva() {
+      avanzar();
+      mostrarImagen();
+    }
 
-            NOMBRE.innerHTML = `<span>${imagenes[posicion].nombre}</span>`;
-            DESCRIPCION.textContent = imagenes[posicion].descripcion;
-        }
-    </script>
+    function mostrarImagen() {
+      IMG.src = RUTA + imagenes[posicion].archivo;
+      IMG.alt = imagenes[posicion].nombre;
+      IMG.title = imagenes[posicion].tooltip;
+
+      NOMBRE.innerHTML = `<span>${imagenes[posicion].nombre}</span>`;
+      DESCRIPCION.textContent = imagenes[posicion].descripcion;
+    }
+
+    let intervalo = setInterval(cambiarDiapositiva, minutos * 1000 * 60);
+  </script>
+
 </body>
+
+
+
+
+
 
 </html>
