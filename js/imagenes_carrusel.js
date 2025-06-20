@@ -1,5 +1,5 @@
  const RUTA = "./img/";
-  const minutos = 1; // duración entre imágenes
+  const MINUTOS = 1; // duración entre imágenes
 
   const imagenes = [
     {
