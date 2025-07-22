@@ -5,21 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrusel con array objeto</title>
-  <link rel="shortcut icon" href="img/avion.avif" type="image/x-icon">
 
+  <link rel="shortcut icon" href="img/avion.avif" type="image/x-icon">
 </head>
+
 <style>
-  html {
-    background: url(./img/cielo.jpg) no-repeat center center fixed;
-    background-size: cover;
-  }
+  html {}
 
   body {
     font-family: 'Nunito', 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 80%;
     margin: 5% auto;
-    border: 10px double aliceblue;
-    color: whitesmoke;
+ background-color: aqua;
+    border: 10px double rgb(27, 8, 132);
     min-height: 100vh;
     padding: 2em;
     backdrop-filter: brightness(90%);
@@ -28,33 +26,47 @@
   .contenedor {
     display: flex;
     justify-content: center;
+    /* Centra el contenido horizontalmente */
     align-items: center;
+    /* Centra verticalmente (si es necesario) */
     gap: 20px;
+    /* Espacio entre los botones y el nombre */
     margin: 0 auto;
+    /* Centra el contenedor dentro del body */
     padding: 20px;
   }
 
+
+
   h1 {
     text-align: center;
+    color: blue;
     background: linear-gradient(to right, blue, white);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Para navegadores que lo soporten */
     color: transparent;
+    /* Asegura compatibilidad */
     text-shadow: 2px 2px 2px darkblue;
   }
+
 
   p {
     max-width: 600px;
     margin: 5% auto 0 auto;
     padding: 0 1em;
     text-align: center;
+    /* Añadir esto para centrar la imagen y el texto */
   }
+
 
   button {
     background-color: white;
     color: darkblue;
     border: 5px solid darkblue;
     padding: 10px;
+
   }
 
   button:hover {
@@ -62,6 +74,8 @@
     color: white;
     cursor: pointer;
   }
+
+
 
   #nombreImagen {
     font-weight: bold;
@@ -72,17 +86,40 @@
 
 <body>
   <h1>CARRUSEL DE IMÁGENES</h1>
-  <p><img src="" alt="foto" id="imagen"> </p>
+  <p><img src="./img/barcelona.jpg" alt="foto" id="imagen"> </p>
+
   <div class="contenedor">
-
     <span id="nombreImagen">barcelona.jpg</span>
-
   </div>
+
   <p id="descripcionImagen"></p>
 
-  <script src="./js/imagenes_carrusel.js"></script>
-
   <script>
+    const RUTA = "./img/";
+
+    const imagenes = [
+      {
+        archivo: "barcelona.jpg",
+        nombre: "Barcelona",
+        tooltip: "Ciudad de España",
+        descripcion: "Capital de Catalunya, cuna de arquitectura"
+      },
+      {
+        archivo: "paris.jpg",
+        nombre: "París",
+        tooltip: "Capital de Francia",
+        descripcion: "París, ciudad de la luz"
+      },
+      {
+        archivo: "londres.jpg",
+        nombre: "Londres",
+        tooltip: "Capital de Inglaterra",
+        descripcion: "Ciudad jardín. Preciosa, Cosmopolita... cuna de los Beatles"
+      }
+    ];
+  </script>
+  <script>
+
     const IMG = document.getElementById('imagen');
     const NOMBRE = document.getElementById('nombreImagen');
     const DESCRIPCION = document.getElementById('descripcionImagen');
@@ -117,14 +154,9 @@
       DESCRIPCION.textContent = imagenes[posicion].descripcion;
     }
 
-    let intervalo = setInterval(cambiarDiapositiva,  3000); // MINUTOS * 1000 * 60 1 minuto)
+    let intervalo = setInterval(cambiarDiapositiva, 3000);
   </script>
 
 </body>
-
-
-
-
-
 
 </html>
